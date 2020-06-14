@@ -1,30 +1,151 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{tocloft}
+\geometry{
+    a4paper,
+    lmargin=0.8in,
+    tmargin=1in,
+    bmargin=1in,
+    rmargin=0.8in,
+}
 \usepackage{times}
 \usepackage{graphicx}
+% changing the titles of TOC, LOF, LOT
+\renewcommand{\contentsname}{\hfill\bfseries\Huge Table of Contents\hfill}   
+\renewcommand{\listfigurename}{\hfill\bfseries\Huge List of Figures\hfill}   
+\renewcommand{\listtablename}{\hfill\bfseries\Huge List of Tables\hfill}   
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftchappresnum}{\textbf{\Large Chapter }}
+% add extra space for `Chapter`
+\newlength{\tocl}% a scratch length
+\settowidth{\tocl}{\bfseries\cftchappresnum\cftchapaftersnum}% extra space
+\addtolength{\cftchapnumwidth}{\tocl}% add the extra space
+
+\makeatletter
+\newlength{\latexpnumwidth}
+\setlength{\latexpnumwidth}{\@pnumwidth}
+\addtolength{\cfttabnumwidth}{25pt}
+\addtolength{\cftfignumwidth}{25pt}
+\let\origcftdot\cftdot
+\addtocontents{lot}{\protect\cftsetpnumwidth{25pt}}
+\addtocontents{lot}{\protect\renewcommand{\protect\cftdot}{}} % Remove the dots
+\addtocontents{lof}{\protect\renewcommand{\protect\cftdot}{}} % Remove the dots
+\addtocontents{lot}{\protect\contentsline{table}{\numberline{\textbf{\tablename}~}\textbf{Title}}{\textbf{Page}}} % Write the header line
 \date{}
+\addtocontents{lof}{\protect\contentsline{figure}{\numberline{\textbf{\figurename}~}\textbf{Title}}{\textbf{Page}}} % Write the header line
+\addtocontents{lof}{\vskip0.5\baselineskip\par}% Some vertical spacing 
+\addtocontents{lot}{\vskip0.5\baselineskip\par}% Some vertical spacing 
+\makeatother
 \author{}
+\usepackage{sectsty}
+\chapterfont{\centering}
 \graphicspath{ {figures/} }
 \title{\vspace{-4.0cm}
     {\textbf{PROJECT TITLE}}\\[1em]
     {\small \textit{A Practice School Report submitted to \\Manipal Academy of Higher Education\\in partial fulfilment of the requirement for the award of the degree of\\[2em]}}
     {\textbf{BACHELOR OF TECHNOLOGY\\in\\ Computer Science \& Engineering\\[2em]}}
     {\small \textit{Submitted by\\}}
-    {\textbf{Pavan Kalyan Damalapati\\}}
-    {\large 160905138\\[0.5em]}
-    {\small \textit{Under the guidance of\\[1em]}}
+    {\textbf{Student Name\\}}
+    {\large registration no.\\[0.5em]}
+    {\small \textit{Under the guidance of\\[1.5em]}}
     {\begin{tabular}{c c c}
             EXTERAL GUIDE & \& & INTERNAL GUIDE \\
             Designation &         & Designation \\
             Company &             & MIT \\
-    \end{tabular}\\[1em]}
-    \includegraphics[height=2cm,width=13.5cm]{mit.jpg} \\
+    \end{tabular}\\}
+    \vspace{7em}
+    \includegraphics[height=2cm,width=15cm]{mit.jpg} \\
     {\normalsize DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING} \\
     {\large June 2020}
 }
+
 \begin{document}
 
 \maketitle
-Sample Doc
-
+\pagestyle{empty}
+\includegraphics[height=2cm,width=15cm]{mit.jpg} \\
+\begin{center}
+    \textbf{DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING}
+\end{center}
+\begin{flushright}
+    Manipal\\  
+    Date
+\end{flushright}
+\vspace{1em}
+\begin{center}
+    \Large \textbf{CERTIFICATE}\\[1em]
+\end{center}
+\setlength{\parindent}{10ex}
+This is to certify that the project titled \textbf{TITLE} is a record of the bonafide work done by \textbf{STUDENT NAME}(\textit{Reg. No. REG NO}) submitted in partial fulfilment of the requirements for the award of the Degree of Bachelor of Technology (B.Tech.) in \textbf{\large COMPUTER SCIENCE \& ENGINEERING} of Manipal Institute of Technology, Manipal, Karnataka, (A Constituent Institute of Manipal Academy of Higher education), during the academic year 2020.\\[5em]
+\newlength\q
+\setlength\q{\dimexpr .7\textwidth -2\tabcolsep}
+\begin{tabular}{p{\q}p{\q}}
+    \textbf{NAME INTERNAL GUIDE} & \textbf{Prof. Dr. Ashalatha Nayak} \\
+    Designation         & HOD, CSE Dept. \\
+      & M.I.T, MANIPAL \\
+\end{tabular}\\[2em]
+\newpage
+Project/Internship Offer Letter
+\newpage
+Project Completion Letter
+\clearpage
+\newpage
+\pagenumbering{roman}
+\begin{center} \section*{\textbf{\Large ACKNOWLEDGMENTS}} \end{center}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+This section should contain the acknowledgements due to the Director, Dept HOD, Project supervisor, company personnel, department guide, Laboratory Incharge (where the work was carried out) and faculty members whose assistance was sought during the project work.
+\clearpage
+\newpage
+\begin{center} \section*{\textbf{\Large ABSTRACT}} \end{center}
+\addcontentsline{toc}{chapter}{Abstract}
+The abstract is brief synopsis of the project work and should be written in 4 paragraphs. The
+first paragraph should introduce the area of the topic and give importance of the work / topic
+in the present day scenario, hence leading to the objective of the project work. The second
+paragraph should briefly discuss the methodology that was adopted in the work. The third
+paragraph should discuss briefly the important results that were obtained and its significance.
+The fourth paragraph should discuss the important conclusion(s) of the project work. If you
+have used some software tools/packages or hardware/systems, indicate them in the last line.
+(The abstract should fit in one page only)
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\listoffigures
+\cftaddtitleline{toc}{chapter}{List Of Figures}{}
+\thispagestyle{empty}
+\newpage
+\listoftables
+\cftaddtitleline{toc}{chapter}{List Of Tables}{}
+\thispagestyle{empty}
+\newpage
+\pagenumbering{arabic}
+\chapter{\textbf{\Large INTRODUCTION}}
+\section{\textbf{ Introduction }}
+\newpage
+\chapter{\textbf{\Large LITERATURE REVIEW}}
+\section{\textbf{ Introduction }}
+\newpage
+\chapter{\textbf{\Large METHODOLOGY}}
+\section{\textbf{ Introduction }}
+\newpage
+\chapter{\textbf{\Large RESULT ANALYSIS}}
+\section{\textbf{ Introduction }}
+\begin{figure}
+\caption{result sample caption for non-existing image}
+\end{figure}
+\newpage
+\chapter{\textbf{\Large CONCLUSION AND FUTURE SCOPE}}
+\section{\textbf{ Brief Summary }}
+\section{\textbf{ Conclusions }}
+\section{\textbf{Future Scope of Work}}
+\newpage
+\cftaddtitleline{toc}{chapter}{\textbf{\Large REFERENCES}}{}
+\chapter*{\textbf{\Large REFERENCES}}
+\newpage
+\cftaddtitleline{toc}{chapter}{\textbf{\Large PLAGIARISM REPORT}}{}
+\chapter*{\textbf{\Large PLAGIARISM REPORT}}
+\newpage
+\cftaddtitleline{toc}{chapter}{\textbf{\Large PROJECT DETAILS}}{}
+\chapter*{\textbf{\Large PROJECT DETAILS}}
 \end{document}
